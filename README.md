@@ -1,4 +1,5 @@
 # frontend
+[![Build Status](https://travis-ci.org/irwz/mitrs-frontend.svg?branch=master)](https://travis-ci.org/irwz/mitrs-frontend)
 
 ## Project setup
 ```
