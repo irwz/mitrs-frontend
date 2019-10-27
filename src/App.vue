@@ -1,10 +1,5 @@
 <template>
   <div id="app">
-    <div>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/register">Register</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
   </div>
 </template>
@@ -13,8 +8,24 @@
 .content {
   margin: auto;
   width: 30%;
-  border: 1px solid #cacaca;
-  padding: 10px;
+  background-color: #fdfdfd;
+  padding: 45px;
+}
+.disable-content {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.footer {
+  margin: auto;
+  width: 30%;
+  background-color: #9c27b0;
+  padding: 45px;
+}
+.login-footer {
+  margin: auto;
+  width: 30%;
+  background-color: #f3f3f3;
+  padding: 45px;
 }
 input[type="text"],
 input[type="email"],

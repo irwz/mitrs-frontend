@@ -1,48 +1,77 @@
 <template>
-  <div class="content">
-    <h1>Registration</h1>
-    <form>
-      <input type="text" placeholder="Mobile number" />
-      <input type="text" placeholder="First name" />
-      <input type="text" placeholder="Last name" />
-      <label>Date of Birth</label>
-      <div class="dob">
-        <select class="select-css" v-model="dob.month">
-          <option disabled value="">Month</option>
-          <option
-            v-for="(month, index) in months"
-            :key="index"
-            :value="index + 1"
-            >{{ month }}</option
-          >
-        </select>
-        <select class="select-css" v-model="dob.day">
-          <option disabled value="">Date</option>
-          <option v-for="day in days" :key="day" :value="day">{{ day }}</option>
-        </select>
-        <select class="select-css" v-model="dob.year">
-          <option disabled value="">Year</option>
-          <option v-for="year in years" :key="year" :value="year">{{
-            year
-          }}</option>
-        </select>
-      </div>
-      <div class="gender">
-        <label class="container"
-          >Male
-          <input type="radio" v-model="gender" value="male" />
-          <span class="checkmark"></span>
-        </label>
-        <label class="container"
-          >Female
-          <input type="radio" v-model="gender" value="female" />
-          <span class="checkmark"></span>
-        </label>
-      </div>
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
-      <button class="btn-block">Register</button>
-    </form>
+  <div>
+    <div class="content" v-bind:class="{ 'disable-content': showLoginButton }">
+      <h1>Registration</h1>
+      <form @submit.prevent="onSubmit">
+        <input
+          type="text"
+          placeholder="Mobile number"
+          v-model="mobileNumber"
+          required
+        />
+        <input
+          type="text"
+          placeholder="First name"
+          v-model="firstName"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Last name"
+          v-model="lastName"
+          required
+        />
+        <label>Date of Birth</label>
+        <div class="dob">
+          <select class="select-css" v-model="dob.month">
+            <option disabled value="">Month</option>
+            <option
+              v-for="(month, index) in months"
+              :key="index"
+              :value="index + 1"
+              >{{ month }}</option
+            >
+          </select>
+          <select class="select-css" v-model="dob.day">
+            <option disabled value="">Date</option>
+            <option v-for="day in days" :key="day" :value="day">{{
+              day
+            }}</option>
+          </select>
+          <select class="select-css" v-model="dob.year">
+            <option disabled value="">Year</option>
+            <option v-for="year in years" :key="year" :value="year">{{
+              year
+            }}</option>
+          </select>
+        </div>
+        <div class="gender">
+          <label class="container"
+            >Male
+            <input type="radio" v-model="gender" value="male" />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container"
+            >Female
+            <input type="radio" v-model="gender" value="female" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <input type="email" placeholder="Email" v-model="email" required />
+        <input
+          type="password"
+          placeholder="Password"
+          v-model="password"
+          required
+        />
+        <button class="btn-block">Register</button>
+      </form>
+    </div>
+    <div class="footer" v-bind:class="{ 'login-footer': showLoginButton }">
+      <button class="btn-block" v-show="showLoginButton" @click="goToLoginPage">
+        Login
+      </button>
+    </div>
   </div>
 </template>
 
@@ -77,12 +106,18 @@ export default {
   data() {
     return {
       days: [],
+      mobileNumber: "",
+      firstName: "",
+      lastName: "",
       dob: {
         month: "",
         day: "",
         year: ""
       },
-      gender: "male"
+      gender: "male",
+      email: "",
+      password: "",
+      showLoginButton: false
     };
   },
   mounted() {
@@ -108,6 +143,13 @@ export default {
           }
         }
       }
+    },
+    onSubmit() {
+      this.showLoginButton = true;
+      localStorage.setItem("registered", "yes");
+    },
+    goToLoginPage() {
+      this.$router.push("/login");
     }
   }
 };
