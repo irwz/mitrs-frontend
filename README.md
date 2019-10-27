@@ -1,6 +1,10 @@
 # frontend
 [![Build Status](https://travis-ci.org/irwz/mitrs-frontend.svg?branch=master)](https://travis-ci.org/irwz/mitrs-frontend)
 
+## Sample User
+email: admin@example.com
+password: admin
+
 ## Project setup
 ```
 npm install
